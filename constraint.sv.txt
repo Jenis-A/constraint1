@@ -1,0 +1,23 @@
+/******PATTERN 123456712345671234567**********/
+
+class cons ;
+  rand int a[];
+  constraint x{a.size inside {[1:31]};}
+  constraint y{foreach(a[i])
+    if( i%7==0)
+      a[i]==1;
+     else
+       a[i]==(i)%7 +1;}
+
+  function void post_randomize();
+      $display("display=%p",a);
+  endfunction
+
+endclass
+
+module tb;
+  cons a1 = new();
+  initial begin
+    assert(a1.randomize());    
+  end
+endmodule
